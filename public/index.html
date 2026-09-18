@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>StudySync</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+    <!-- BACKGROUND -->
+
+    <div class="background">
+
+        <div class="glow glow-one"></div>
+
+        <div class="glow glow-two"></div>
+
+        <div class="grid"></div>
+
+    </div>
+
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                SS
+            </div>
+
+            <span>
+                StudySync
+            </span>
+
+        </div>
+
+
+        <div class="nav-status">
+
+            <span class="status-dot"></span>
+
+            AI Online
+
+        </div>
+
+    </nav>
+
+
+
+    <main>
+
+
+        <!-- HERO -->
+
+        <section class="hero">
+
+            <div class="hero-badge">
+
+                <span>✦</span>
+
+                AI-Powered Learning
+
+            </div>
+
+
+            <h1>
+
+                Study
+
+                <span class="gradient-text">
+                    smarter.
+                </span>
+
+            </h1>
+
+
+            <p>
+
+                Upload your school materials and turn them
+                into clear notes, flashcards, quizzes,
+                and personalized AI tutoring.
+
+            </p>
+
+        </section>
+
+
+
+        <!-- UPLOAD CARD -->
+
+        <section class="upload-card">
+
+            <div class="card-top">
+
+                <div>
+
+                    <h2>
+                        Create Study Materials
+                    </h2>
+
+                    <p>
+                        Upload your lesson, slides, or textbook PDF.
+                    </p>
+
+                </div>
+
+
+                <div class="ai-icon">
+                    ✦
+                </div>
+
+            </div>
+
+
+            <!-- PDF UPLOAD -->
+
+            <label
+                class="file-box"
+                id="fileBox"
+            >
+
+                <div class="upload-icon">
+                    ↑
+                </div>
+
+
+                <div class="upload-title">
+
+                    <span id="fileText">
+                        Choose a PDF
+                    </span>
+
+                </div>
+
+
+                <div class="upload-subtitle">
+
+                    Drop your file here or click to browse
+
+                </div>
+
+
+                <div class="file-limit">
+
+                    PDF • Maximum 20 MB
+
+                </div>
+
+
+                <input
+                    type="file"
+                    id="pdfFile"
+                    accept=".pdf,application/pdf"
+                >
+
+            </label>
+
+
+            <!-- GENERATE BUTTON -->
+
+            <button
+                id="generateButton"
+                class="generate-button"
+            >
+
+                <span class="button-icon">
+                    ✦
+                </span>
+
+                <span class="button-text">
+                    Generate Study Materials
+                </span>
+
+                <span class="button-arrow">
+                    →
+                </span>
+
+            </button>
+
+
+            <!-- LOADING -->
+
+            <div
+                id="loading"
+                class="loading hidden"
+            >
+
+                <div class="loading-spinner"></div>
+
+                <div>
+
+                    <strong>
+                        AI is analyzing your material
+                    </strong>
+
+                    <span>
+                        This may take a little while for large PDFs.
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <p id="status"></p>
+
+        </section>
+
+
+
+        <!-- =================================================
+             STUDY MODE SELECTOR
+             ================================================= -->
+
+        <section
+            id="modeSection"
+            class="mode-section hidden"
+        >
+
+            <div class="section-label">
+                STUDY MODE
+            </div>
+
+
+            <h2>
+                How do you want to study?
+            </h2>
+
+
+            <p>
+                Choose how you want to learn your material.
+            </p>
+
+
+            <div class="mode-grid">
+
+
+                <!-- NOTES -->
+
+                <button
+                    id="notesModeButton"
+                    class="mode-card active"
+                >
+
+                    <div class="mode-icon">
+                        📚
+                    </div>
+
+
+                    <div class="mode-content">
+
+                        <h3>
+                            Study Notes
+                        </h3>
+
+                        <span>
+                            Review your organized study guide
+                        </span>
+
+                    </div>
+
+
+                    <div class="mode-arrow">
+                        →
+                    </div>
+
+                </button>
+
+
+
+                <!-- FLASHCARDS -->
+
+                <button
+                    id="flashcardModeButton"
+                    class="mode-card"
+                >
+
+                    <div class="mode-icon">
+                        🧠
+                    </div>
+
+
+                    <div class="mode-content">
+
+                        <h3>
+                            Flashcards
+                        </h3>
+
+                        <span>
+                            Test yourself with active recall
+                        </span>
+
+                    </div>
+
+
+                    <div class="mode-arrow">
+                        →
+                    </div>
+
+                </button>
+
+
+
+                <!-- AI QUIZ -->
+
+                <button
+                    id="quizModeButton"
+                    class="mode-card"
+                >
+
+                    <div class="mode-icon">
+                        📝
+                    </div>
+
+
+                    <div class="mode-content">
+
+                        <h3>
+                            AI Quiz
+                        </h3>
+
+                        <span>
+                            Take a practice test from your material
+                        </span>
+
+                    </div>
+
+
+                    <div class="mode-arrow">
+                        →
+                    </div>
+
+                </button>
+
+
+
+                <!-- STUDY AI -->
+
+                <button
+                    id="studyAiModeButton"
+                    class="mode-card"
+                >
+
+                    <div class="mode-icon">
+                        🤖
+                    </div>
+
+
+                    <div class="mode-content">
+
+                        <h3>
+                            Study AI
+                        </h3>
+
+                        <span>
+                            Ask an AI tutor about your material
+                        </span>
+
+                    </div>
+
+
+                    <div class="mode-arrow">
+                        →
+                    </div>
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             STUDY NOTES
+             ================================================= -->
+
+        <section
+            id="notesSection"
+            class="notes-section hidden"
+        >
+
+            <div class="notes-header">
+
+                <div>
+
+                    <div class="section-label">
+                        GENERATED STUDY GUIDE
+                    </div>
+
+                    <h2>
+                        Your Study Notes
+                    </h2>
+
+                </div>
+
+
+                <button
+                    id="copyButton"
+                    class="copy-button"
+                >
+
+                    <span>
+                        ⧉
+                    </span>
+
+                    Copy Notes
+
+                </button>
+
+            </div>
+
+
+            <div
+                id="notes"
+                class="notes-content"
+            ></div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             FLASHCARDS
+             ================================================= -->
+
+        <section
+            id="flashcardSection"
+            class="flashcard-section hidden"
+        >
+
+            <div class="flashcard-header">
+
+                <div>
+
+                    <div class="section-label">
+                        ACTIVE RECALL
+                    </div>
+
+                    <h2>
+                        Flashcards
+                    </h2>
+
+                </div>
+
+
+                <div
+                    id="flashcardProgress"
+                    class="flashcard-progress"
+                >
+                    Question 1 of 12
+                </div>
+
+            </div>
+
+
+            <!-- SCORE -->
+
+            <div
+                id="scoreDisplay"
+                class="score-display"
+            >
+
+                <span>
+                    Score
+                </span>
+
+                <strong id="score">
+                    0
+                </strong>
+
+            </div>
+
+
+            <!-- QUESTION -->
+
+            <div
+                id="questionCard"
+                class="question-card"
+            >
+
+                <div
+                    id="roundLabel"
+                    class="round-label"
+                >
+                    ROUND 1
+                </div>
+
+
+                <h3
+                    id="questionText"
+                    class="question-text"
+                >
+                    Loading question...
+                </h3>
+
+
+                <div
+                    id="answers"
+                    class="answers"
+                ></div>
+
+
+                <!-- FEEDBACK -->
+
+                <div
+                    id="feedback"
+                    class="feedback hidden"
+                >
+
+                    <div
+                        id="feedbackTitle"
+                        class="feedback-title"
+                    ></div>
+
+
+                    <div
+                        id="feedbackText"
+                        class="feedback-text"
+                    ></div>
+
+
+                    <button
+                        id="nextQuestionButton"
+                        class="next-question-button"
+                    >
+                        Next Question →
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             AI QUIZ
+             ================================================= -->
+
+        <section
+            id="quizSection"
+            class="quiz-section hidden"
+        >
+
+            <div class="quiz-header">
+
+                <div>
+
+                    <div class="section-label">
+                        PRACTICE TEST
+                    </div>
+
+                    <h2>
+                        AI Quiz
+                    </h2>
+
+                </div>
+
+
+                <div
+                    id="quizProgress"
+                    class="flashcard-progress"
+                >
+                    Question 1 of 10
+                </div>
+
+            </div>
+
+
+            <!-- QUIZ SCORE -->
+
+            <div class="score-display">
+
+                <span>
+                    Score
+                </span>
+
+                <strong
+                    id="quizScoreNumber"
+                >
+                    0
+                </strong>
+
+            </div>
+
+
+            <!-- QUIZ QUESTION -->
+
+            <div
+                id="quizCard"
+                class="question-card"
+            >
+
+                <div
+                    id="quizQuestion"
+                    class="question-text"
+                >
+                    Creating your quiz...
+                </div>
+
+
+                <div
+                    id="quizAnswers"
+                    class="answers"
+                ></div>
+
+
+                <!-- QUIZ FEEDBACK -->
+
+                <div
+                    id="quizFeedback"
+                    class="feedback hidden"
+                >
+
+                    <div
+                        id="quizFeedbackTitle"
+                        class="feedback-title"
+                    ></div>
+
+
+                    <div
+                        id="quizFeedbackText"
+                        class="feedback-text"
+                    ></div>
+
+
+                    <button
+                        id="quizNextButton"
+                        class="next-question-button"
+                    >
+                        Next Question →
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             STUDY AI
+             ================================================= -->
+
+        <section
+            id="studyAiSection"
+            class="study-ai-section hidden"
+        >
+
+            <div class="section-label">
+                AI TUTOR
+            </div>
+
+
+            <h2>
+                Study AI
+            </h2>
+
+
+            <p class="study-ai-description">
+
+                Ask questions about your study material
+                and get explanations from your AI tutor.
+
+            </p>
+
+
+            <!-- CHAT -->
+
+            <div
+                id="chatMessages"
+                class="chat-messages"
+            >
+
+                <!-- INITIAL AI MESSAGE -->
+
+                <div class="ai-message">
+
+                    <div class="chat-avatar">
+                        AI
+                    </div>
+
+
+                    <div class="chat-bubble">
+
+                        Hi! I'm your StudySync AI tutor.
+                        Ask me anything about your study material.
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- CHAT INPUT -->
+
+            <form
+                id="studyAiForm"
+                class="study-ai-form"
+            >
+
+                <input
+                    type="text"
+                    id="studyAiInput"
+                    placeholder="Ask something about your notes..."
+                    autocomplete="off"
+                >
+
+
+                <button
+                    type="submit"
+                    id="studyAiButton"
+                >
+
+                    Ask AI →
+
+                </button>
+
+            </form>
+
+        </section>
+
+
+
+        <!-- =================================================
+             COMPLETE
+             ================================================= -->
+
+        <section
+            id="completeSection"
+            class="complete-section hidden"
+        >
+
+            <div class="complete-icon">
+                ✓
+            </div>
+
+
+            <div class="section-label">
+                STUDY SESSION COMPLETE
+            </div>
+
+
+            <h2>
+                Quiz Complete
+            </h2>
+
+
+            <p>
+                You finished the quiz.
+            </p>
+
+
+            <div class="final-score">
+
+                <span>
+                    Final Score
+                </span>
+
+
+                <strong id="finalScore">
+                    0 / 10
+                </strong>
+
+            </div>
+
+
+            <button
+                id="restartButton"
+                class="generate-button restart-button"
+            >
+
+                <span class="button-icon">
+                    ↻
+                </span>
+
+                <span class="button-text">
+                    Study Again
+                </span>
+
+                <span class="button-arrow">
+                    →
+                </span>
+
+            </button>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <span>
+            StudySync
+        </span>
+
+        <span class="footer-dot">
+            •
+        </span>
+
+        <span>
+            Built for smarter studying
+        </span>
+
+    </footer>
+
+
+
+    <!-- =================================================
+         MATHJAX
+         ================================================= -->
+
+    <script>
+
+        window.MathJax = {
+
+            tex: {
+
+                inlineMath: [
+                    ['$', '$'],
+                    ['\\(', '\\)']
+                ],
+
+                displayMath: [
+                    ['$$', '$$'],
+                    ['\\[', '\\]']
+                ]
+
+            },
+
+            svg: {
+                fontCache: 'global'
+            }
+
+        };
+
+    </script>
+
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"
+    ></script>
+
+
+    <!-- MAIN JAVASCRIPT -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
