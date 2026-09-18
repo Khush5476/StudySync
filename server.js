@@ -854,4 +854,18 @@ Give the student a helpful explanation.`
 );
 
 
-module.exports = app;
+/* =========================================================
+   START SERVER
+   ========================================================= */
+
+const PORT = 3000;
+
+app.listen(
+    PORT,
+    () => {
+
+        console.log(
+            `StudySync is running at http://localhost:${PORT}`
+        );
+    }
+);
