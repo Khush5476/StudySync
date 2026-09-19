@@ -2,6 +2,7 @@ const express = require("express");
 const multer = require("multer");
 const dotenv = require("dotenv");
 const fs = require("fs");
+const path = require("path");
 const { GoogleGenAI } = require("@google/genai");
 
 dotenv.config();
@@ -19,11 +20,18 @@ const app = express();
 app.use(express.json({ limit: "2mb" }));
 
 /* FILE UPLOAD */
+const uploadDirectory = process.env.VERCEL
+    ? "/tmp"
+    : path.join(__dirname, "uploads");
+
+if (!process.env.VERCEL && !fs.existsSync(uploadDirectory)) {
+    fs.mkdirSync(uploadDirectory, { recursive: true });
+}
 
 const upload = multer({
     storage: multer.diskStorage({
         destination: function (req, file, cb) {
-            cb(null, "uploads/");
+            cb(null, uploadDirectory);
         },
 
         filename: function (req, file, cb) {
@@ -127,7 +135,6 @@ async function generateWithRetry(contents, config = {}) {
 }
 
 /* SERVE WEBSITE */
-const path = require("path");
 
 app.use(express.static(path.join(__dirname, "public")));
 
